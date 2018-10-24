@@ -1,0 +1,11 @@
+  // Use Case: I need to use jQuery to build Navigation on Hover State
+
+  // Adding CSS classes to unordered list
+
+  /* NAVIGATION - LIST / "addClass()"
+  ---------------------------------------------------------------------*/
+  $(".class-selector > li").addClass("horizontal");
+
+  /* NAVIGATION - SUBLAYER CONTENT / "not()"
+  ---------------------------------------------------------------------*/
+  $(".class-selector > li:not(.horizontal)").addClass("sub-level");

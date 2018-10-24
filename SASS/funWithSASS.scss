@@ -1,0 +1,515 @@
+/* VARIABLES
+======================================*/
+
+// === Colors ===
+$text-color: #222;
+$theme-color: #333;
+$secondary-color: #444;
+$ternary-color: #555;
+$link-color: $secondary-color;
+$menu-item-color: #666;
+
+// === Fonts ===
+$text-font: Verdana, Arial, san-serif;
+$headline-font: Georgia, serif;
+
+// === Sizes ===
+$content-height: 960px;
+$header-height: 60px;
+$footer-height: 90px;
+
+
+/* PARTIALS
+======================================*/
+
+// create a partial with underscore (_variables.scss)
+// ideas :: create partials for colors, reset, typography, browser compatibility, mixins, functions
+// @import "variables";
+
+
+/*MIXINS
+======================================*/
+
+// === Warning Mixin ===
+@mixin warning {
+  background-color: orange;
+  color: #fff;
+}
+.warning-button {
+  @include warning;
+}
+
+// === Font Styling Mixin ===
+@mixin large-text {
+  font {
+    size: 22px;
+    weight: bold;
+  }
+}
+h2 {
+  @include large-text;
+}
+
+// === Mixin within a Mixin ===
+@mixin rounded {
+  border-radius: 6px;
+}
+@mixin box {
+  @include rounded;
+  border: 1px solid #444;
+}
+
+// === Mixin on Root level ===
+@mixin fancy-links {
+  a {
+    font-style: italic;
+    text-decoration: none;
+  }
+}
+@include fancy-links;
+
+
+/* MIXINS WITH ARGUMENTS
+======================================*/
+
+// === @mixin name(argument) {} ===
+@mixin rounded($radius) {
+  border-radius: $radius;
+}
+@mixin box($radius, $border) {
+  @include rounded($radius);
+  border: $border;
+}
+#header {
+  @include box(8px, 1px solid #999);
+}
+
+// === Set Default Arguments ===
+@mixin rounded($radius: 6px) {
+  border-radius: $radius;
+}
+@mixin box($radius: 6px, $border: 1px solid #000) {
+  @include rounded($radius);
+  border: $border;
+}
+
+// === Changes Both Arguments  ===
+#header {
+  @include box(8px, 1px solid #999);
+}
+
+// === Changes Both Arguments - More Readable  ===
+#header {
+  @include box($radius: 8px, $border: 1px solid #999);
+}
+
+// === Changes 2nd Argument Only  ===
+#header {
+  @include box($border: 1px solid #999);
+}
+
+// === Variable Arguments ===
+@mixin box-shadow($shadows...) {
+  box-shadow: $shadows;
+  -moz-box-shadow: $shadows;
+  -webkit-box-shadow: $shadows;
+}
+#header {
+  @include box($radius: 8px, $border: 1px solid #999);
+  @include box-shadow(2px 0 4px #999, 1px 1px 6px $secondary-color);
+}
+
+
+/* PASSING CONTENT INTO MIXINS
+======================================*/
+
+@mixin apply-to-ie6 {
+  * html {
+      @content;
+  }
+}
+@include apply-to-ie6 {
+  body {
+    font-size: 125%;
+  }
+}
+
+
+/* IMPORTS
+======================================*/
+
+// === Sass Imports - Partial SCSS files ===
+// @import "variables";
+// @import "mixins";
+
+// === CSS ImportS ===
+// @import url()
+// @import "http://"
+// @import "filename.css"
+// @import "style-screen" screen;
+
+
+/* MIXIN TO IMPORT GOOGLE FONTS
+======================================*/
+
+@mixin google-font($font) {
+  $font: unquote($font);
+  @import url(https://fonts.googleapis.com/css?family=#{$font});
+}
+@include google-font("Aleygreya+Sans");
+@include google-font("Titillium+Web");
+$text-font: "Aleygreya Sans", Arial, san-serif;
+$headline-font: "Titillium Web", Georgia, serif;
+
+
+/* NESTED MEDIA QUERIES
+======================================*/
+
+$content-width: 960px;
+#main {
+  width: $content-width;
+  @media only screen and (max-width: 960px) {
+    max-width: $content-width;
+    width: 100%;
+  }
+}
+
+
+/* USING MIXINS AND MEDIA QUERIES
+======================================*/
+
+@mixin tiny-screens() {
+  @media only screen and (max-width: 320px) {
+    @content;
+  }
+}
+@mixin small-screens() {
+  @media only screen and (max-width: 480px) {
+    @content;
+  }
+}
+@mixin medium-screens() {
+  @media only screen and (max-width: 680px) {
+    @content;
+  }
+}
+@mixin large-screens() {
+  @media only screen and (max-width: 960px) {
+    @content;
+  }
+}
+body {
+  @include medium-screens {
+    font-size: 125%;
+  }
+}
+#main {
+  width: $content-width;
+  @include large-screens {
+    max-width: $content-width;
+    width: 100%;
+  }
+}
+
+
+/* BASIC MATH AND SASS SHELL
+======================================*/
+
+// === Command Shell Prompt ===
+// SASS Math Calculations Expression using Data Types
+// Type (sass --interactive) OR (sass -i) and then start Math
+// Can use Inches, Pixels, Ems, Variables, etc...
+// Dividing example ... (8px / 4px) or $value: 6px ... $value / 2
+
+
+/* COLOR ARITHMETIC AND SASS SHELL
+======================================*/
+
+// === Command Shell Prompt ===
+// Type (sass --interactive) OR (sass -i)
+// #333 + #777
+// #999 - #444
+// #123 * 2
+// #888 / #080402
+
+
+
+/* CONDITIONAL CHECKS IN SASS SHELL
+======================================*/
+
+// === Command Shell Prompt ===
+// Type (sass --interactive) OR (sass -i)
+// 3 < 4 // true
+// 4 == 5 // false
+
+
+/* SASS FUNCTIONS
+======================================*/
+
+// === Darken Function ===
+$link-color: #666;
+a {
+  color: $link-color;
+  &:hover {
+    color: darken($link-color, 15%);
+  }
+}
+
+// === Lighten Function ===
+$background-color: #666;
+.btn {
+  background: background-color;
+  &:hover {
+    background: lighten($background-color, 10%);
+  }
+}
+
+
+// === Transparentize and Opacify Functions ===
+// Manipulates colors that are more transparent
+// Second Argument has a value between 0 and 1
+$menu-item-color: #444;
+a {
+  color: $menu-item-color;
+  padding: 6px 8px;
+  border-bottom: 1px solid transparentize(#fefefe, 1);
+  transition: border-bottom 0.5s;
+  transition-timing-function: ease-in-out;
+  &:hover {
+    border-bottom: 1px solid opacify(#fefefe, .5);
+  }
+}
+
+
+/* CUSTOM SASS FUNCTIONS
+======================================*/
+
+// === Addition ===
+@function sum($left, $right) {
+  @return $left + $right;
+}
+@sum(2px, 3px); // 5px
+
+// === PX to EM ===
+@function em($pixels, $context: 16px) {
+  @return ($pixels / $context) * 1em;
+}
+body {
+  font-size: em(18px); // font-size: 1.125em
+}
+li {
+  padding: em(20px) em(20px);
+}
+
+// === Calculate Width of Single Column (Grid Layout)  ===
+@function col-width($columns: 12, $page-width: 100%, $gap: 1%) {
+  @return ($page-width - $gap*($columns - 1)) / $columns;
+}
+$col: col-width($columns: 8); // Variable
+#content {
+  float: left;
+  width: 6*$col;
+}
+#sidebar {
+  width: 2*$col;
+}
+
+// === Strip Units ??? Look into this more ===
+@function strip-unit($value) {
+  @return $value / ($value*0 + 1);
+}
+
+
+/* INHERITANCE DIRECTIVE WITH @EXTEND
+=============================================*/
+
+//=== Example 1 ===
+.error {
+  color: red;
+}
+.critical-error {
+  @extend .error;
+  bottom: 1px solid #666;
+  font-weight: bold;
+}
+
+//=== Example 2 ===
+@mixin warning {
+  background-color: orange;
+  color: #fff;
+}
+@mixin rounded {
+  border-radius: 6px;
+}
+.warning-button {
+  @include warning;
+}
+.cta-button {
+  @extend .warning-button;
+  @include rounded;
+  font-weight: bold;
+}
+
+//=== Example 3 ===
+// Multiple Extends in one class
+.cta-button {
+  @extend .warning-button;
+  @extend .error;
+  @include rounded;
+  font-weight: bold;
+}
+
+//=== Example 3 ===
+// Chaining Extend
+.super-cta-button {
+  @extend .cta-button;
+  font-size: em(20px);
+}
+
+
+/* @EXTEND RULES + SASS PLACEHOLDERS
+=============================================*/
+
+// @extend .warning-button .red // No space allowed between classes
+// @media screen // cannot @extend within media queries when class is outside of media query
+// @extend class must defined with media query
+
+// === Extend Only Selector ===
+// These extend selectors will not process directly in css file
+%highlight {
+  font-style: italic;
+}
+.sub-title {
+  @extend %highlight;
+  font-size: em(20px);
+}
+
+// === Allows SASS PreProsser to move forward if @extend doesn't exist ===
+// add (!optional)
+.sub-title {
+  @extend %highlight;
+  @extend .foo !optional;
+  font-size: em(20px);
+}
+
+
+/* CONDITIONAL DIRECTIVES IF/ELSE IF/ELSE
+=============================================*/
+
+// === Set a Default State before Conditional Statement === 
+$contrast: high;
+body {
+  @if $contrast == high {
+    color: 000;
+  } @else if $contrast == low {
+    color: #999;
+  } @else {
+    color: #666;
+  }
+}
+
+// === Theme // Allowed Values... Dark, Light, Default === 
+// Options ... set variables, colors, grid layout, flags (true / false), etc...
+$theme: light;
+$body-background-color: #fff; // Defualt
+@if $theme == Dark {
+  $body-background-color: #22222a;
+} @else if $theme == Light {
+  $body-background-color: #fff;
+}
+body {
+  background: $body-background-color;
+}
+
+
+/* CONDITIONAL DIRECTIVES - MIXINS W/ @IF
+=============================================*/
+
+// === Allowed Values... blue beans, rogers-rovers, pastry-pizza ===
+$link-color: #888;
+$brand: blue-beans; // Set Default State
+@mixin blue-beans {
+  @if $brand == blue-beans {
+    @content;
+  }
+}
+@mixin rogers-rovers {
+  @if $brand == rogers-rovers {
+    @content;
+  }
+}
+@mixin pastry-pizza {
+  @if $brand == pastry-pizza {
+    @content;
+  }
+}
+a {
+  color: $link-color;
+  @include blue-beans {
+    color: #8779ff;
+  }
+  @include pastry-pizza {
+    color: #738282;
+  }
+}
+#footer {
+  @include rogers-rovers {
+    border-top: 5px solid darken(#999, 15%);
+  }
+}
+
+
+/* @FOR LOOP
+=============================================*/
+
+// This will iterate 1 through 6
+@for $i from 1 through 6 {
+  .col-#{$i} {
+     width: $i * 2em; 
+  }
+}
+
+// This will iterate 1 through 5
+@for $i from 1 to 6 {
+  .col-#{$i} {
+     width: $i * 2em; 
+  }
+}
+
+
+/* @EACH LOOP
+=============================================*/
+
+$speakers: bob-banker, patty-plume, sandra-smith;
+@each $speakers in $speakers {
+  .#{$speakers}-profile {
+    background: url('/image/#{$speakers}.png');
+  }
+}
+
+// === Iterate over a Map // Map is a data structure of key value pairs ===
+$font-sizes: (tiny: 8px, small: 11px, medium: 13px, large: 18px);
+@each $name, $size in $font-sizes {
+  .#{$name} {
+    font-size: $size;
+  }
+}
+
+
+/* @WHILE LOOP
+=============================================*/
+
+// === Flexible with Step Iterations ===
+$j: 2;
+@while $j <= 8 {
+  .picture-#{$j} {
+    width: $j * 10%;
+  }
+  $j: $j + 2;
+}
+
+/* Global Header Update
+=============================================*/
+.header .jc-logo {
+  top: 42px;
+}

@@ -1,0 +1,39 @@
+.view-content {
+    position: relative;
+    min-height: 1000px;
+  }
+  pre {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+  }
+  .blocks {
+    width: 400px;
+    height: 200px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: top 1s;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    line-height: 200px;
+    color: #fff;
+    font-size: 40px;
+    &.one {
+      background: #f00;
+      z-index: 1;
+      top: 50px;
+    }
+    &.two {
+      background: #0f0;
+      z-index: 2;
+      top: 300px;
+    }
+    &.three {
+      background: #00f;
+      z-index: 1;
+      top: 550px;
+    }
+  }

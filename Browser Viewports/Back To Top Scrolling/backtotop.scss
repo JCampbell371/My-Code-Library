@@ -1,0 +1,18 @@
+p {
+    font-size: 16px;
+    margin: 0 0 20px;
+  }
+  a.back-to-top {
+    background: #666;
+    color: #fff;
+    padding: 20px 10px;
+    text-align: center;
+    width: 120px;
+    text-decoration: none;
+    position: fixed;
+    bottom: 3em;
+    right: 0;
+    display: none;
+    z-index: 1041;
+  }
+  

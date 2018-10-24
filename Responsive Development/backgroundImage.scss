@@ -1,0 +1,13 @@
+// Responsive Design : CSS Background Image
+
+header {
+    background: url('image/###.jpg') no-repeat center top; 
+    background-size: cover; 
+    padding-top: 49%;
+    height: 0;
+    position: relative;
+    margin-top: 10px;
+    width: 100%;
+    overflow: auto;
+    display: block; 
+  }

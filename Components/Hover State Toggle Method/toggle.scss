@@ -1,0 +1,27 @@
+section {
+    .play-container {
+      width: 80%;
+      padding: 20px;
+      margin: 0 auto 30px;
+      border: 2px solid #ccc;
+      display: flex;
+      justify-content: space-around;
+      .col {
+        width: 45%;
+        height: 50px;
+        border: 1px solid #ccc;
+      }
+      .left {
+        background: blue;
+        &:hover {
+          background: red;
+        }
+      }
+      .right {
+        background: red;
+        &:hover {
+          background: blue;
+        }
+      }
+    }
+  }

@@ -1,0 +1,122 @@
+// Colors for each box
+.box1 { background:#1abc9c;}
+.box2 { background:#3498db;}
+.box3 { background:#9b59b6;}
+.box4 { background:#34495e;}
+.box5 { background:#f1c40f;}
+.box6 { background:#e67e22;}
+.box7 { background:#e74c3c;}
+.box8 { background:#bdc3c7;}
+.box9 { background:#2ecc71;}
+.box10 { background:#16a085;}
+
+// Define Flex Container
+.container {
+  width: 85%;
+  // vh in height - stands for viewport height
+  //height: 100vh;
+  margin: 0 auto 30px;
+  padding: 0;
+  
+  // Display Flex - display: flex
+  // Display Flex - display: inline-flex
+  // Enables flex content for all its direct children elements
+   display: flex;
+  
+  // Flex Direction - row, row-reverse, column, column-reverse
+  // Flex Direction - row (default) - Main axes - left to right
+  // Flex Direction - row-reverse - Main axes - right to left
+  // Flex Direction - column - top to bottom
+  // Flex Direction - column-reverse - bottom to top
+  // Finds the main axis which determines the direction of the child elements
+  flex-direction: row;
+  
+  // Flex Wrap - nowrap (default)
+  // Flex Wrap - wrap
+  // Flex wrap - wrap-reverse
+  // Flex will try to fit all items on one line ... flex wrap will allow those to wrap to next line if needed
+  flex-wrap: wrap;
+  
+  // Justify Content flex-start (defualt)
+  // Justify Content flex-end
+  // Justify Content center
+  // Justify Content space-between
+  // Justify Content space-around
+  // Defines alignment along main axis. Distrubutes extra free space left over
+  justify-content: flex-start;
+  
+  // Align Items - stretch (default)
+  // Align Items - center 
+  // Align Items - flex-start 
+  // Align Items - flex-end
+  // Align Items - baseline - looks at text within element to make sure bottom of text is aligned properly
+  // Defines how flex children elements are laid out across the cross-axis
+  align-items: flex-start;
+  
+  // Align Content flex-start (defualt)
+  // Align Content flex-end
+  // Align Content center
+  // Align Content space-between
+  // Align Content space-around
+  // Defines extra space along the cross-axis
+  align-content: flex-start;
+}
+
+.box {
+  color: #fff;
+  text-align: center;
+  font-size: 25px;
+  line-height: 50px;
+  font-weight: bold;
+  
+  // Using "calc" to adjust for margins in Flexbox
+   //width: calc(33.33% - 10px);
+   //margin: 5px;
+  
+  // Flex Property will divide up the remaining extra space
+  // Example "3" will take up 3 times the amount of space compared to other sibling elements
+  // Flex properties can be decimal points
+  // All in porportion to other sibling elements
+  // Flex - flex: number
+  // Flex - flex-grow: number
+  // Default for flex-grow is 0 
+  // Flex - flex-shrink: number
+  // Default for flex-shrink is 1
+  // Flex - flex-basis: number
+  // Flex Shorthand - flex-grow | flex-shrink | flex-basis
+  //flex: 1;
+  flex: 1 1 100px;
+}
+
+/*.box2{
+  flex: 1 1 5%;
+}
+.box4 {
+  flex: 2 2 20%;
+}*/
+
+// Flex Order Property
+// Order propery controls the order in which flex items appear
+// Order Default starts at 0;
+// Use case :: "box3" - will be last because all sibling elements are 0
+// Use case :: "box7" - will be in 9th position all sibilings are 0 except
+//for "box3". "box3" will be last because it has a higher value than "box7"
+// Negative values will work as well
+// Great idea for Desktop to Mobile Positioning
+
+/*.box3 {
+  order: 3;
+}
+.box7 {
+  order: 2;
+}*/
+
+// Align Self - will align individual elements along cross axis
+// Align Self - stretch (default)
+// Align Self - center 
+// Align Self - flex-start 
+// Align Self - flex-end
+// Align Self - baseline - looks at text within element to make sure bottom of text is aligned properly
+/*.box10 {
+  align-self: center;
+}*/
